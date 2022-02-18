@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>試合一覧</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<style>
+    .vs {
+        background-color: lightblue;
+    }
+
+    #logo-pl {
+        width: 13%;
+        height: 13%;
+    }
+
+    #logo-es, #logo-it {
+        width: 9%;
+        height: 9%;
+    }
+
+    #logo-bu {
+        width: 7%;
+        height: 7%;
+    }
+    .game {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .outer {
+        position: relative;
+    }
+    .inner {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+<body>
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link" th:href="@{/home}">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" th:href="@{/game}">試合結果</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle"
+				data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+				aria-expanded="false">順位表</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" th:href="@{/rank}">プレミアリーグ</a>
+				<a class="dropdown-item" th:href="@{/rank}">リーガエスパニョーラ</a>
+				<a class="dropdown-item" th:href="@{/rank}">セリエＡ</a>
+				<a class="dropdown-item" th:href="@{/rank}">ブンデスリーガ</a>
+			</div>
+		</li>
+	</ul>
+
+    <h1 class="game">試合一覧</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                            <li class="page-item"><a class="page-link" href="#">昨日</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">今日</a></li>
+                            <li class="page-item"><a class="page-link" href="#">明日</a></li>
+                            <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <h4 class="col-12">2022年2月14日(月)</h4>
+
+            <div class="col-12 shadow p-3 mb-5 bg-body rounded vs>
+                <h5><img src="/images/foot/PL_logo.png" id="logo-pl"> プレミアリーグ</h5>
+                <div class="offset-4"><p th:text="${homeTeamName}">2 - 0 ●(ロゴ)ブレントフォード</p></div>
+                <div class="offset-4"><p>ノーリッジ● 1 - 1 ●クリスタルパレス</p></div>
+                <div class="offset-4"><p>トッテナムホットスパー● 2 - 3 ●サウサンプトン</p></div>
+                <div class="offset-4"><p>アストンヴィラ● 3 - 3 ●リーズ</p></div>
+            </div>
+            <div class="col-12 shadow p-3 mb-5 bg-body rounded vs">
+                <h5><img src="/images/foot/es_logo.png" id="logo-es"> リーガエスパニョーラ</h5>
+                <div class="offset-4"><p>マンチェスターシティ● 2 - 0 ●ブレントフォード</p></div>
+                <div class="offset-4"><p>ノーリッジ● 1 - 1 ●クリスタルパレス</p></div>
+                <div class="offset-4"><p>トッテナムホットスパー● 2 - 3 ●サウサンプトン</p></div>
+                <div class="offset-4"><p>アストンヴィラ● 3 - 3 ●リーズ</p></div>
+            </div>
+            <div class="col-12 shadow p-3 mb-5 bg-body rounded vs">
+                <h5><img src="/images/foot/it_logo.png" id="logo-it"> セリエＡ</h5>
+                <div class="offset-4"><p>マンチェスターシティ● 2 - 0 ●ブレントフォード</p></div>
+                <div class="offset-4"><p>ノーリッジ● 1 - 1 ●クリスタルパレス</p></div>
+                <div class="offset-4"><p>トッテナムホットスパー● 2 - 3 ●サウサンプトン</p></div>
+                <div class="offset-4"><p>アストンヴィラ● 3 - 3 ●リーズ</p></div>
+            </div>
+            <div class="col-12 shadow p-3 mb-5 bg-body rounded vs">
+                <h5><img src="/images/foot/bu_logo.png" id="logo-bu"> ブンデスリーガ</h5>
+                <div class="offset-4"><p>マンチェスターシティ● 2 - 0 ●ブレントフォード</p></div>
+                <div class="offset-4"><p>ノーリッジ● 1 - 1 ●クリスタルパレス</p></div>
+                <div class="offset-4"><p>トッテナムホットスパー● 2 - 3 ●サウサンプトン</p></div>
+                <div class="offset-4"><p>アストンヴィラ● 3 - 3 ●リーズ</p></div>
+            </div>
+        </div>
+    </div><!-- /.container -->
+    
+
+    <div class="outer">
+        <div class="inner"><a class="btn btn-primary btn-active-box-shadow" role="button" href="home">ホームへ</a></div>
+    </div>
+    
+    <script src="/js/jquery-3.6.0.min.js"></script>
+  	<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+	<title>順位表</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<style>
+#logo-pl {
+	width: 30%;
+}
+
+.rank {
+	text-align: center;
+}
+
+.clel {
+	position: relative;
+	left: 20px;
+}
+
+.outer {
+	position: relative;
+}
+
+.inner {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.dropdown {
+	display: inline-block;
+}
+</style>
+
+<body>
+	<ul class="nav nav-tabs justify-content-center">
+		<li class="nav-item">
+			<a class="nav-link" th:href="@{/home}">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" th:href="@{/game}">試合結果</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link active dropdown-toggle"
+				data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+				aria-expanded="false">順位表</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" th:href="@{/rank}">プレミアリーグ</a>
+				<a class="dropdown-item" th:href="@{/rank}">リーガエスパニョーラ</a>
+				<a class="dropdown-item" th:href="@{/rank}">セリエＡ</a>
+				<a class="dropdown-item" th:href="@{/rank}">ブンデスリーガ</a>
+			</div>
+		</li>
+	</ul>
+
+	<h1 class="rank mt-3">順位表</h1>
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-6 plbk">
+				<img src="/images/foot/pl_logo.png" id="logo-pl">
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">プレミアリーグ</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">リーガエスパニョーラ</a> <a
+							class="dropdown-item" href="#">セリエＡ</a> <a class="dropdown-item"
+							href="#">ブンデスリーガ</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-6 offset-3">
+		<table class="table table-bordered" th:object="${ranking}">
+			<thead>
+				<tr>
+					<th scope="col">順位</th>
+					<th scope="col">チーム</th>
+					<th scope="col">試合</th>
+					<th scope="col">勝</th>
+					<th scope="col">分</th>
+					<th scope="col">負</th>
+					<th scope="col">得点</th>
+					<th scope="col">失点</th>
+					<th scope="col">差</th>
+					<th scope="col">勝ち点</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="rank, vs : ${ranks}" class="table-success">
+					<th scope="row" th:text="${vs.count}"></th>
+					<td th:text="${rank.name}"></td>
+					<td th:text="${rank.game}"></td>
+					<td th:text="${rank.win}"></td>
+					<td th:text="${rank.draw}"></td>
+					<td th:text="${rank.lose}"></td>
+					<td th:text="${rank.plus}"></td>
+					<td th:text="${rank.minus}"></td>
+					<td th:text="${rank.diff}"></td>
+					<td th:text="${rank.point}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="clel offset-3">
+		<button type="button" class="btn btn-success btn-sm"></button>
+		チャンピオンズリーグ
+	</div>
+	<div class="clel offset-3">
+		<button type="button" class="btn btn-primary btn-sm"></button>
+		ヨーロッパリーグ
+	</div>
+	<div class="clel offset-3">
+		<button type="button" class="btn btn-danger btn-sm"></button>
+		降格
+	</div>
+
+
+	<div class="outer mt-3">
+		<div class="inner">
+			<a class="btn btn-primary btn-active-box-shadow" role="button"
+				href="home">ホームへ</a>
+		</div>
+	</div>
+
+	<script src="/js/jquery-3.6.0.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

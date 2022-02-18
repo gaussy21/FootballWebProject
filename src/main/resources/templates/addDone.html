@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<style>
+.outer {
+	position: relative;
+}
+
+.inner {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.table {
+	background: lightblue;
+	border-radius: 10px;
+	text-align: center;
+}
+</style>
+<body>
+	<ul class="nav nav-tabs justify-content-center">
+		<li class="nav-item"><a class="nav-link active"
+			th:href="@{/home}">Home</a></li>
+		<li class="nav-item"><a class="nav-link" th:href="@{/game}">試合結果</a>
+		</li>
+		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+			aria-expanded="false">順位表</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" th:href="@{/rank}">プレミアリーグ</a> <a
+					class="dropdown-item" th:href="@{/rank}">リーガエスパニョーラ</a> <a
+					class="dropdown-item" th:href="@{/rank}">セリエＡ</a> <a
+					class="dropdown-item" th:href="@{/rank}">ブンデスリーガ</a>
+			</div></li>
+	</ul>
+
+	<h1 class="text-center mt-4">登録完了</h1>
+	<p class="text-center mt-3">以下の内容で登録しました</p>
+
+
+	<div class="container mb-4">
+		<div class="row">
+			<table class="table table-borderless col-6 offset-3"
+				   th:object="${result}">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">ホーム</th>
+						<th scope="col"></th>
+						<th scope="col">アウェイ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row"></th>
+						<td></td>
+						<td th:text="*{#dates.format(date, 'yyyy年MM月dd日(E)')}"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">チーム</th>
+						<td th:text="${homeName}"></td>
+						<td>vs</td>
+						<td th:text="${awayName}"></td>
+					</tr>
+					<tr>
+						<th scope="row">スコア</th>
+						<td th:text="*{homeScore}"></td>
+						<td>-</td>
+						<td th:text="*{awayScore}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="outer">
+		<div class="inner">
+			<a class="btn btn-primary btn-active-box-shadow" role="button"
+				href="home">ホームへ</a>
+		</div>
+	</div>
+
+	<script src="/js/jquery-3.6.0.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

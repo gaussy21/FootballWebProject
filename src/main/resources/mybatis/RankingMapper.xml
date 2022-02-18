@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdrv.mapper.RankingMapper">
+	
+	<select id="selectAll" resultType="com.zdrv.domain.Ranking">
+		select
+			team_id, teams.name, game, win, draw, lose, plus, minus, diff, point
+		from ranking
+		join teams
+		on ranking.team_id = teams.id
+		order by point desc
+	</select>
+	
+	<insert id="update" parameterType="com.zdrv.domain.Ranking">
+	   insert into ranking 
+	   (team_id, game, win, draw, lose, plus, minus, diff, point)
+	   values
+	   (#{teamId}, 1, #{win}, #{draw}, #{lose}, #{plus}, #{minus}, #{plus} - #{minus}, #{point})
+	   on duplicate key update
+	   game = game + 1, win = win + #{win}, draw = draw + #{draw},
+	   lose = lose + #{lose}, plus = plus + #{plus}, minus = minus + #{minus},
+	   diff = diff + (#{plus} - #{minus}), point = point + #{point}
+	</insert>   
+	
+
+	
+</mapper>

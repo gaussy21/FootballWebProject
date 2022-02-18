@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>試合一覧</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<style>
+    .wrap {
+        background-color: lightblue;
+    }
+
+    #logo-pl {
+        width: 13%;
+        height: 13%;
+    }
+
+    #logo-es, #logo-it {
+        width: 9%;
+        height: 9%;
+    }
+
+    #logo-bu {
+        width: 7%;
+        height: 7%;
+    }
+
+
+    .outer {
+        position: relative;
+    }
+    .inner {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+<body>
+    <ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link" th:href="@{/home}">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" th:href="@{/game}">試合結果</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle"
+				data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+				aria-expanded="false">順位表</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" th:href="@{/rank}">プレミアリーグ</a>
+				<a class="dropdown-item" th:href="@{/rank}">リーガエスパニョーラ</a>
+				<a class="dropdown-item" th:href="@{/rank}">セリエＡ</a>
+				<a class="dropdown-item" th:href="@{/rank}">ブンデスリーガ</a>
+			</div>
+		</li>
+	</ul>
+
+    <h1 class="text-center mt-4 mb-4">試合一覧</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                            <li class="page-item"><a class="page-link" href="#">昨日</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">今日</a></li>
+                            <li class="page-item"><a class="page-link" href="#">明日</a></li>
+                            <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <h4 class="col-12 text-center mt-3" 
+    	th:text="*{#dates.format(date, 'yyyy年MM月dd日(E)')}"></h4>
+
+    <div class="container">
+        <div class="wrap mt-4">
+            <h5><img src="/images/foot/PL_logo.png" id="logo-pl"> プレミアリーグ</h5>
+            <div class="row" th:object="${result}">
+                    <div class="col" th:field="*{id}">
+                        <span th:each="result : ${results}" class="col-3 offset-3" th:text="*{homeTeamName}"></span>
+                        <span th:each="result : ${results}" class="col-1" th:text="*{homeScore}"></span>
+                        <span class="col-1">-</span>
+                        <span th:each="result : ${results}" class="col-1" th:text="*{awayScore}"></span>
+                        <span th:each="result : ${results}" class="col-3" th:text="*{awayTeamName}"></span>
+                    </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col">
+                    <span class="col-3 offset-3">マンチェスターC</span>
+                    <span class="col-1">1</span>
+                    <span class="col-1">-</span>
+                    <span class="col-1">0</span>
+                    <span class="col-3">アウェイ</span>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.wrap -->
+            
+        <div class="wrap mt-5">
+            <h5><img src="/images/foot/es_logo.png" id="logo-es"> リーガエスパニョーラ</h5>
+            <div class="row">
+                    <div class="col">
+                        <span class="col-3 offset-3">マンチェスターC</span>
+                        <span class="col-1">1</span>
+                        <span class="col-1">-</span>
+                        <span class="col-1">0</span>
+                        <span class="col-3">アウェイ</span>
+                    </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col">
+                    <span class="col-3 offset-3">マンチェスターC</span>
+                    <span class="col-1">1</span>
+                    <span class="col-1">-</span>
+                    <span class="col-1">0</span>
+                    <span class="col-3">アウェイ</span>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.wrap -->
+
+        <div class="wrap mt-5">
+            <h5><img src="/images/foot/it_logo.png" id="logo-it"> セリエＡ</h5>
+            <div class="row">
+                    <div class="col">
+                        <span class="col-3 offset-3">マンチェスターC</span>
+                        <span class="col-1">1</span>
+                        <span class="col-1">-</span>
+                        <span class="col-1">0</span>
+                        <span class="col-3">アウェイ</span>
+                    </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col">
+                    <span class="col-3 offset-3">マンチェスターC</span>
+                    <span class="col-1">1</span>
+                    <span class="col-1">-</span>
+                    <span class="col-1">0</span>
+                    <span class="col-3">アウェイ</span>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.wrap -->
+
+        <div class="wrap mt-5">
+            <h5><img src="/images/foot/bu_logo.png" id="logo-bu"> ブンデスリーガ</h5>
+            <div class="row">
+                    <div class="col">
+                        <span class="col-3 offset-3">マンチェスターC</span>
+                        <span class="col-1">1</span>
+                        <span class="col-1">-</span>
+                        <span class="col-1">0</span>
+                        <span class="col-3">アウェイ</span>
+                    </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col">
+                    <span class="col-3 offset-3">マンチェスターC</span>
+                    <span class="col-1">1</span>
+                    <span class="col-1">-</span>
+                    <span class="col-1">0</span>
+                    <span class="col-3">アウェイ</span>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.wrap -->
+    </div><!-- /.container -->        
+        
+
+    <div class="outer mt-5">
+        <div class="inner"><a class="btn btn-primary btn-active-box-shadow" role="button" href="home.html">ホームへ</a></div>
+    </div>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
